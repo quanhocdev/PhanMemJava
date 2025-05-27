@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tư vấn miễn phí - Hy Vọng Mới</title>
+    <style>
+        :root {
+            --primary-blue: #3F8FD1;
+            --primary-pink: #F6A6B4;
+            --accent-teal: #6EC1B6;
+            --light-gray: #f5f7fa;
+            --text-dark: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-blue);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .auth-buttons {
+            display: flex;
+        }
+        
+        .auth-buttons a {
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn {
+            color: var(--primary-blue);
+            margin-right: 10px;
+        }
+        
+        .login-btn:hover {
+            background-color: rgba(63, 143, 209, 0.1);
+        }
+        
+        .register-btn {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+        
+        .register-btn:hover {
+            background-color: #3680bc;
+        }
+        
+        /* Tư vấn miễn phí section */
+        .consultation {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background-color: var(--light-gray);
+        }
+        
+        .consultation-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        .consultation-image {
+            flex: 1;
+            max-width: 40%;
+            position: relative;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+        
+        .consultation-image img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .consultation-image h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: white;
+        }
+        
+        .consultation-image p {
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .expert-info {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .expert-info h4 {
+            margin-bottom: 5px;
+            color: white;
+        }
+        
+        .expert-info p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        
+        .consultation-form {
+            flex: 1;
+            padding: 40px;
+        }
+        
+        .consultation-form h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+        
+        .consultation-form p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(63, 143, 209, 0.2);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-teal));
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(63, 143, 209, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(63, 143, 209, 0.4);
+        }
+        
+        .privacy-notice {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #777;
+            text-align: center;
+        }
+        
+        /* Why choose us section */
+        .why-choose-us {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            position: relative;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-pink);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .benefits-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .benefit-item {
+            flex: 1;
+            min-width: 250px;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: var(--light-gray);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-teal) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .benefit-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .benefit-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-pink);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-col p, .footer-col li {
+            margin-bottom: 10px;
+            color: #bdc3c7;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-bottom a:hover {
+            color: white;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .consultation-container {
+                flex-direction: column;
+            }
+            
+            .consultation-image {
+                max-width: 100%;
+                padding: 30px;
+            }
+            
+            .benefits-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Logo Hy Vọng Mới">
+                <h1>Hy Vọng Mới</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="trang-chu-updated.html">Trang chủ</a></li>
+                    <li><a href="phac-do-dieu-tri-html.html">Phác đồ điều trị</a></li>
+                    <li><a href="doi-ngu-bac-si.html">Đội ngũ bác sĩ</a></li>
+                    <li><a href="#lien-he">Liên hệ</a></li>
+                    <li><a href="gioi-thieu-co-so-y-te.html">Giới thiệu cơ sở</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="login-page.html" class="login-btn">Đăng nhập</a>
+                <a href="register-page.html" class="register-btn">Đăng ký</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tư vấn miễn phí Section -->
+    <section class="consultation">
+        <div class="container">
+            <div class="consultation-container">
+                <div class="consultation-image">
+                    <img src="ảnhtao.jpg" alt="Chuyên gia tư vấn">
+                    <h3>Tư vấn miễn phí</h3>
+                    <p>Chia sẻ những băn khoăn và nhận lời khuyên từ đội ngũ chuyên gia hàng đầu trong lĩnh vực hỗ trợ sinh sản</p>
+                    
+                    <div class="expert-info">
+                        <h4>Đội ngũ tư vấn</h4>
+                        <p>20+ bác sĩ chuyên khoa Sản phụ khoa và chuyên gia tâm lý</p>
+                    </div>
+                </div>
+                <div class="consultation-form">
+                    <h2>Nhận tư vấn cá nhân hóa</h2>
+                    <p>Chia sẻ lo lắng của bạn và nhận được những lời khuyên hữu ích từ đội ngũ chuyên gia giàu kinh nghiệm của chúng tôi.</p>
+                    
+                    <form id="consultationForm">
+                        <div class="form-group">
+                            <label for="fullname">Họ và tên</label>
+                            <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên của bạn" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại của bạn" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email của bạn" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="question">Câu hỏi của bạn</label>
+                            <textarea id="question" name="question" placeholder="Nhập câu hỏi hoặc vấn đề bạn đang gặp phải..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Gửi yêu cầu tư vấn</button>
+                    </form>
+                    
+                    <p class="privacy-notice">Chúng tôi cam kết bảo mật thông tin của bạn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lợi ích khi tư vấn với chúng tôi</h2>
+            </div>
+            
+            <div class="benefits-container">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Đội ngũ chuyên gia</h3>
+                    <p>Được tư vấn bởi các bác sĩ có trên 15 năm kinh nghiệm trong lĩnh vực điều trị hiếm muộn và hỗ trợ sinh sản.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Phân tích cá nhân hóa</h3>
+                    <p>Nhận được phác đồ điều trị được thiết kế riêng biệt dựa trên tình trạng sức khỏe và nhu cầu cụ thể của bạn.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Hỗ trợ tâm lý</h3>
+                    <p>Không chỉ tư vấn về y tế, chúng tôi còn hỗ trợ tâm lý cho các cặp đôi trong suốt quá trình điều trị.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="lien-he">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3>Về chúng tôi</h3>
+                <p>Hy Vọng Mới là đơn vị tiên phong trong lĩnh vực hỗ trợ điều trị hiếm muộn tại Việt Nam với hơn 15 năm kinh nghiệm.</p>
+                <p>Chúng tôi cam kết mang đến cho bạn những phương pháp điều trị hiện đại nhất và sự đồng hành tận tâm trên hành trình làm cha mẹ của bạn.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Liên hệ</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Đường Lê Lợi, Quận 1, TP.HCM</li>
+                    <li><i class="fas fa-phone"></i> Hotline: 1900 1234 56</li>
+                    <li><i class="fas fa-envelope"></i> info@hyvongmoi.vn</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Thông tin hữu ích</h3>
+                <ul>
+                    <li><a href="#">Thông tin về hiếm muộn</a></li>
+                    <li><a href="#">Phương pháp điều trị</a></li>
+                    <li><a href="#">Đội ngũ bác sĩ</a></li>
+                    <li><a href="#">Tin tức y khoa</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Kết nối với chúng tôi</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Hy Vọng Mới. Tất cả các quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission handling
+            const consultationForm = document.getElementById('consultationForm');
+            
+            consultationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {
+                    fullname: document.getElementById('fullname').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    question: document.getElementById('question').value
+                };
+                
+                // Here you would typically send the data to your server
+                // For this example, we'll just show an alert
+                alert('Cảm ơn bạn đã gửi yêu cầu tư vấn! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.');
+                
+                // Reset form
+                consultationForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
